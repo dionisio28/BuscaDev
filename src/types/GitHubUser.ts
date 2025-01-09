@@ -8,6 +8,8 @@ export interface GitHubUser {
   email?: string;
   followers: number;
   following: number;
+  location?: string;
+  public_repos: number;
 }
 
 export interface GitHubError {
