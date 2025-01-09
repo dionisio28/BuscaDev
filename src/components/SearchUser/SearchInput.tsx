@@ -1,16 +1,18 @@
 import React, {useCallback} from 'react';
 import styled from 'styled-components/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {Colors} from '../styles/colors';
+import {Colors} from '../../styles/colors';
+import {scale} from '../../utils/platformUtils';
 
 interface SearchInputProps {
   value: string;
   placeholder?: string;
   onChangeText: (text: string) => void;
+  onSubmitEditing: () => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = React.memo(
-  ({value, placeholder = 'Search...', onChangeText}) => {
+  ({value, placeholder = 'Search...', onChangeText, onSubmitEditing}) => {
     const handleClear = useCallback(() => {
       onChangeText('');
     }, [onChangeText]);
@@ -21,7 +23,7 @@ const SearchInput: React.FC<SearchInputProps> = React.memo(
           <MaterialIcons
             name="person-search"
             size={28}
-            color={Colors.lightGray}
+            color={Colors.lightBlack}
           />
         </LeftIcon>
 
@@ -29,13 +31,14 @@ const SearchInput: React.FC<SearchInputProps> = React.memo(
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
+          onSubmitEditing={onSubmitEditing}
           autoCapitalize="none"
           autoCorrect={false}
         />
 
         {value.length > 0 && (
           <RightIcon onPress={handleClear}>
-            <MaterialIcons name="clear" size={28} color={Colors.darkGray} />
+            <MaterialIcons name="clear" size={28} color={Colors.lightBlack} />
           </RightIcon>
         )}
       </Container>
@@ -48,17 +51,17 @@ export default SearchInput;
 const Container = styled.View`
   flex-direction: row;
   align-items: center;
-  border: 1px solid ${Colors.opacityGray};
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0 10px;
-  height: 40px;
-  background-color: ${Colors.white};
-  margin-bottom: 16px;
+  height: ${scale(56)}px;
+  margin-top: ${scale(24)}px;
+  margin-bottom: ${scale(16)}px;
+  background-color: ${Colors.opacityGray};
 `;
 
 const Input = styled.TextInput`
   flex: 1;
-  font-size: 16px;
+  font-size: ${scale(16)}px;
   padding: 0 10px;
 `;
 

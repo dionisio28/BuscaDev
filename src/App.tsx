@@ -1,6 +1,6 @@
 import React from 'react';
 import {UserProvider} from './contexts/UserContext';
-import GithubFinder from './screens/GithubFinder';
+import GithubFinder from './screens/SearchUser';
 import {SafeAreaView} from 'react-native';
 import { safeAreaViewStyle } from './styles/customStyles';
 
