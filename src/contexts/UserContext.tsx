@@ -1,6 +1,6 @@
 import React, {createContext, useState, ReactNode} from 'react';
 import {fetchUser} from '../service/repository/userRepository';
-import {GitHubResponse} from '../service/types/GitHubUser';
+import {GitHubResponse} from '../types/GitHubUser';
 
 interface UserContextState {
   user: GitHubResponse | null;
