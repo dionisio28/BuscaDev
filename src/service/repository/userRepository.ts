@@ -8,7 +8,7 @@ export const fetchUser = async (username: string): Promise<GitHubResponse> => {
   } catch (error: any) {
     if (error.status === 404) {
       return {
-        message: error.response.data.message || 'Usuário não encontrado',
+        message: 'Usuário não encontrado',
         status: error.response.status.toString(),
       };
     }
