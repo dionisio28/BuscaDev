@@ -1,20 +1,31 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
 import SearchInput from '../components/SearchUser/SearchInput.tsx';
 import {Colors} from '../styles/colors.ts';
 import styled from 'styled-components/native';
 import {useUser} from '../hooks/useGitHub.ts';
 import SearchButton from '../components/SearchUser/SearchButton.tsx';
-import Message from '../components/Message.tsx';
+import Message from '../components/Common/Message.tsx';
 import {scale} from '../utils/platformUtils';
+import {useNavigation, NavigationProp} from '@react-navigation/native';
+import {RootStackParamList} from '../routes/navigator.tsx';
+
+type SearchUserScreenNavigationProp = NavigationProp<RootStackParamList>;
 
 const SearchUser = () => {
   const [searchUsername, setSearchUsername] = useState('');
 
-  const {getUser, loading, error, typeError} = useUser();
+  const {getUser, loading, error, typeError, clearError} = useUser();
+
+  const {navigate} = useNavigation<SearchUserScreenNavigationProp>();
+
+  const navigateToUserDetails = useCallback(() => {
+    navigate('UserDetails');
+  }, [navigate]);
 
   const onHandleSearchUsernamePress = async () => {
-    await getUser(searchUsername.trim());
+    await getUser(searchUsername.trim(), navigateToUserDetails);
+
   };
 
   return (
@@ -30,8 +41,8 @@ const SearchUser = () => {
         value={searchUsername}
         onChangeText={setSearchUsername}
         onSubmitEditing={onHandleSearchUsernamePress}
+        onClearPress={clearError}
       />
-
 
       <SearchButton onPress={onHandleSearchUsernamePress} />
 

@@ -1,31 +1,33 @@
-import React, {createContext, useState, ReactNode} from 'react';
+import React, {createContext, useState, ReactNode, useCallback} from 'react';
 import {fetchUser} from '../service/repository/userRepository';
-import {GitHubResponse} from '../types/GitHubUser';
+import {GitHubUser} from '../types/GitHubUser';
 interface UserContextState {
-  user: GitHubResponse | null;
+  user: GitHubUser;
   loading: boolean;
   error: string | null;
-  typeError:  'error' | 'warning';
-  getUser: (username: string) => Promise<void>;
+  typeError: 'error' | 'warning';
+  getUser: (username: string, callbackNavigator: Function) => Promise<void>;
+  clearError: () => void;
 }
 
 const initialState: UserContextState = {
-  user: null,
+  user: {} as GitHubUser,
   loading: false,
   error: null,
-  typeError:  'error',
+  typeError: 'error',
   getUser: async () => {},
+  clearError: () => {},
 };
 
 export const UserContext = createContext<UserContextState>(initialState);
 
 export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
-  const [user, setUser] = useState<GitHubResponse | null>(null);
+  const [user, setUser] = useState<GitHubUser>({} as GitHubUser);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [typeError, setTypeError] = useState<'error' | 'warning'>('error');
 
-  const getUser = async (username: string) => {
+  const getUser = async (username: string, callbackNavigator: Function) => {
     if (loading) {
       return;
     }
@@ -47,6 +49,7 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
         setError(response.message);
       } else {
         setUser(response);
+        callbackNavigator();
         setTypeError('error');
       }
     } catch (err: any) {
@@ -84,8 +87,13 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
     return {isValid: true, message: ''};
   };
 
+  const clearError = useCallback(() => {
+    setError(null);
+  }, []);
+
   return (
-    <UserContext.Provider value={{user, loading, error, getUser, typeError}}>
+    <UserContext.Provider
+      value={{user, loading, error, getUser, typeError, clearError}}>
       {children}
     </UserContext.Provider>
   );

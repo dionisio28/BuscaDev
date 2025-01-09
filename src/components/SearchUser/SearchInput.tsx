@@ -9,13 +9,15 @@ interface SearchInputProps {
   placeholder?: string;
   onChangeText: (text: string) => void;
   onSubmitEditing: () => void;
+  onClearPress: () => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = React.memo(
-  ({value, placeholder = 'Search...', onChangeText, onSubmitEditing}) => {
+  ({value, placeholder = 'Search...', onChangeText, onSubmitEditing, onClearPress}) => {
     const handleClear = useCallback(() => {
       onChangeText('');
-    }, [onChangeText]);
+      onClearPress();
+    }, [onChangeText, onClearPress]);
 
     return (
       <Container>

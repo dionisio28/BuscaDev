@@ -1,8 +1,8 @@
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components/native';
-import {Colors} from '../styles/colors';
-import {scale} from '../utils/platformUtils';
+import {Colors} from '../../styles/colors';
+import {scale} from '../../utils/platformUtils';
 
 interface MessageProps {
   type: 'error' | 'warning';
