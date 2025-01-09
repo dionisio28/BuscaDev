@@ -14,7 +14,7 @@ const SearchUser = () => {
   const {getUser, loading, error, typeError} = useUser();
 
   const onHandleSearchUsernamePress = async () => {
-    await getUser(searchUsername);
+    await getUser(searchUsername.trim());
   };
 
   return (
@@ -31,9 +31,11 @@ const SearchUser = () => {
         onChangeText={setSearchUsername}
         onSubmitEditing={onHandleSearchUsernamePress}
       />
-      {loading && <ActivityIndicator size={'large'} color={Colors.info} />}
+
 
       <SearchButton onPress={onHandleSearchUsernamePress} />
+
+      {loading && <ActivityIndicator size={'large'} color={Colors.info} />}
       {!loading && error && <Message message={error} type={typeError} />}
     </Container>
   );

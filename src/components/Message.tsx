@@ -1,34 +1,89 @@
 import React from 'react';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components/native';
-import { Colors } from '../styles/colors';
+import {Colors} from '../styles/colors';
+import {scale} from '../utils/platformUtils';
 
 interface MessageProps {
-  type: 'error' | 'warning' | 'info';
+  type: 'error' | 'warning';
   message: string;
 }
 
 const Message: React.FC<MessageProps> = React.memo(({type, message}) => {
-  return <StyledText type={type}>{message}</StyledText>;
+  return (
+    <Container type={type}>
+      <MaterialIcons
+        name={getIcon(type)}
+        size={scale(32)}
+        color={Colors.white}
+      />
+      <MessageContainer>
+        <StyledTitle>{getMessage(type)}</StyledTitle>
+        <StyledMessage te>{message}</StyledMessage>
+      </MessageContainer>
+    </Container>
+  );
 });
 
 export default Message;
 
-const StyledText = styled.Text<{type: 'error' | 'warning' | 'info'}>`
-  font-size: 16px;
-  text-align: center;
-  color: ${({type} : {type: 'error' | 'warning' | 'info'}) => getColor(type)};
-  margin-top: 16px;
+const Container = styled.View<{type: 'error' | 'warning'}>`
+  width: 100%;
+  background-color: ${({type}: {type: 'error' | 'warning'}) => getColor(type)};
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  padding: ${scale(14)}px;
+  margin-top: ${scale(32)}px;
 `;
 
-const getColor = (type: 'error' | 'warning' | 'info') => {
+const MessageContainer = styled.View`
+  justify-content: center;
+  padding-left: ${scale(10)}px;
+  width: 82%;
+`;
+
+const StyledTitle = styled.Text`
+  font-size: ${scale(16)}px;
+  line-height: ${scale(24)}px;
+  text-align: left;
+  color: ${Colors.white};
+  font-weight: bold;
+`;
+
+const StyledMessage = styled.Text`
+  font-size: ${scale(14)}px;
+  line-height: ${scale(16)}px;
+  text-align: left;
+  color: ${Colors.white};
+  font-weight: 600;
+`;
+
+const getColor = (type: 'error' | 'warning') => {
   switch (type) {
     case 'error':
       return 'red';
     case 'warning':
       return Colors.warning;
-    case 'info':
-      return Colors.info;
     default:
       return Colors.black;
+  }
+};
+
+const getIcon = (type: 'error' | 'warning') => {
+  switch (type) {
+    case 'error':
+      return 'error-outline';
+    default:
+      return 'warning-amber';
+  }
+};
+
+const getMessage = (type: 'error' | 'warning') => {
+  switch (type) {
+    case 'error':
+      return 'Erro!';
+    default:
+      return 'Alerta!';
   }
 };

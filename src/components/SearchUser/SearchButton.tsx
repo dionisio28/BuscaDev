@@ -23,6 +23,7 @@ const Button = styled.TouchableOpacity`
   background-color: ${Colors.black};
   border-radius: 10px;
   flex-direction: row;
+  margin-bottom: ${scale(16)}px;
   justify-content: center;
   align-items: center;
 `;
