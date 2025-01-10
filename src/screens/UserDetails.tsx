@@ -61,7 +61,7 @@ const TextRepos = styled.Text`
   font-size: ${scale(20)}px;
   line-height: ${scale(20)};
   padding: ${scale(4)}px;
-  padding-bottom: ${scale(8)}px;
+  padding-bottom: ${scale(16)}px;
   color: ${Colors.lightBlack};
 `;
 
