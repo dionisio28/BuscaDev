@@ -33,7 +33,7 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
   const [error, setError] = useState<string | null>(null);
   const [typeError, setTypeError] = useState<'error' | 'warning'>('error');
   const [repos, setRepos] = useState<Repository[]>([]);
-  const [repoPage, setRepoPage] = useState(0);
+  const [repoPage, setRepoPage] = useState(1);
 
   const getUser = async (username: string, callbackNavigator: Function) => {
     if (loading) {

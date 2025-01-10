@@ -1,4 +1,4 @@
-import {Dimensions, NativeModules, Platform} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
 export const {width, height} = Dimensions.get('window');
 
@@ -17,7 +17,5 @@ export const scale = (size: number, factor = 0.2) =>
 
 export const isAndroid = () => Platform.OS === 'android';
 
-export const STATUSBAR_HEIGHT = !isAndroid()
-  ? 20
-  : NativeModules.StatusBarManager.HEIGHT;
+export const STATUSBAR_HEIGHT = scale(20);
 
