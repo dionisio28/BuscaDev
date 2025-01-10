@@ -3,10 +3,11 @@ import githubApi from '../githubApi';
 
 export const fetchUserRepos = async (
   username: string,
+  page: number,
 ): Promise<GitHubReposResponse> => {
   try {
     const response = await githubApi.get<Repository[]>(
-      `/users/${username}/repos`,
+      `/users/${username}/repos?per_page=8&page=${page}&sort=created`,
     );
     return response.data;
   } catch (error: any) {

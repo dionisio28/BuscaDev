@@ -11,6 +11,7 @@ interface UserContextState {
   getUser: (username: string, callbackNavigator: Function) => Promise<void>;
   clearError: () => void;
   repos: Repository[];
+  getMoreRepos: () => Promise<void>;
 }
 
 const initialState: UserContextState = {
@@ -21,6 +22,7 @@ const initialState: UserContextState = {
   getUser: async () => {},
   clearError: () => {},
   repos: [],
+  getMoreRepos: async () => {},
 };
 
 export const UserContext = createContext<UserContextState>(initialState);
@@ -31,6 +33,7 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
   const [error, setError] = useState<string | null>(null);
   const [typeError, setTypeError] = useState<'error' | 'warning'>('error');
   const [repos, setRepos] = useState<Repository[]>([]);
+  const [repoPage, setRepoPage] = useState(0);
 
   const getUser = async (username: string, callbackNavigator: Function) => {
     if (loading) {
@@ -71,9 +74,9 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
       return;
     }
     setLoading(true);
-
     try {
-      const response = await fetchUserRepos(username);
+      setRepoPage(1);
+      const response = await fetchUserRepos(username, 1);
       if ('message' in response) {
         setError(response.message);
       } else {
@@ -81,6 +84,29 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
       }
     } catch (err: any) {
       setError('Ocorreu um erro inesperado ao buscar o usuário.');
+      setTypeError('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getMoreRepos = async () => {
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const nextPage = repoPage + 1;
+      const response = await fetchUserRepos(user.login, nextPage);
+      if ('message' in response) {
+        setError(response.message);
+      } else {
+        setRepos(prevRepos => [...prevRepos, ...response]);
+        setRepoPage(nextPage);
+      }
+    } catch (err: any) {
+      setError('Ocorreu um erro inesperado ao buscar mais repositórios.');
       setTypeError('error');
     } finally {
       setLoading(false);
@@ -120,7 +146,16 @@ export const UserProvider: React.FC<{children: ReactNode}> = ({children}) => {
 
   return (
     <UserContext.Provider
-      value={{user, loading, error, getUser, typeError, clearError, repos}}>
+      value={{
+        user,
+        loading,
+        error,
+        getUser,
+        typeError,
+        clearError,
+        repos,
+        getMoreRepos,
+      }}>
       {children}
     </UserContext.Provider>
   );

@@ -9,13 +9,14 @@ import {scale, STATUSBAR_HEIGHT} from '../utils/platformUtils.ts';
 import UserInformation from '../components/UserDetails/UserInformation.tsx';
 import Divider from '../components/UserDetails/Divider.tsx';
 import InformationItem from '../components/UserDetails/InformationItem.tsx';
+import RepositoryList from '../components/UserDetails/RepositoryList.tsx';
 
 const UserDetails = () => {
   const {goBack} = useNavigation();
-  const {user} = useUser();
+  const {user, repos, getMoreRepos} = useUser();
 
   return (
-    <Scroll>
+    <Scroll onScrollEndDrag={() => getMoreRepos()}>
       <Container>
         <BackIcon onPress={goBack}>
           <MaterialIcons name="arrow-back" size={28} color={Colors.black} />
@@ -29,6 +30,7 @@ const UserDetails = () => {
         </InformatiosRow>
         <Divider />
         <TextRepos>Últimos respositórios</TextRepos>
+        <RepositoryList repos={repos} />
       </Container>
     </Scroll>
   );
@@ -56,9 +58,10 @@ const InformatiosRow = styled.View`
 `;
 
 const TextRepos = styled.Text`
-  font-size: ${scale(18)}px;
+  font-size: ${scale(20)}px;
   line-height: ${scale(20)};
   padding: ${scale(4)}px;
+  padding-bottom: ${scale(8)}px;
   color: ${Colors.lightBlack};
 `;
 
