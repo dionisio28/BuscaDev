@@ -61,7 +61,7 @@ const RepositoryList = ({repos}: RepositoryListProps) => {
         loading ? (
           <ActivityIndicator
             testID="loading-indicator"
-            size="small"
+            size="large"
             color={Colors.info}
           />
         ) : null

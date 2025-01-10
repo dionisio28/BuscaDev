@@ -46,7 +46,7 @@ const SearchUser = () => {
 
       <SearchButton onPress={onHandleSearchUsernamePress} />
 
-      {loading && <ActivityIndicator size={'large'} color={Colors.info} />}
+      {loading && <ActivityIndicator testID="loading-indicator" size={'large'} color={Colors.info} />}
       {!loading && error && <Message message={error} type={typeError} />}
     </Container>
   );

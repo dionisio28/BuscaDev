@@ -59,7 +59,7 @@ const InformatiosRow = styled.View`
 
 const TextRepos = styled.Text`
   font-size: ${scale(20)}px;
-  line-height: ${scale(20)};
+  line-height: ${scale(20)}px;
   padding: ${scale(4)}px;
   padding-bottom: ${scale(16)}px;
   color: ${Colors.lightBlack};
