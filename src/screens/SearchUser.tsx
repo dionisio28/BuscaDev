@@ -5,7 +5,7 @@ import {Colors} from '../styles/colors.ts';
 import styled from 'styled-components/native';
 import {useUser} from '../hooks/useGitHub.ts';
 import SearchButton from '../components/SearchUser/SearchButton.tsx';
-import Message from '../components/Common/Message.tsx';
+import Message from '../components/Common/Message';
 import {scale} from '../utils/platformUtils';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParamList} from '../routes/navigator.tsx';

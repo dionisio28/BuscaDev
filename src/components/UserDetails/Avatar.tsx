@@ -8,7 +8,7 @@ interface AvatarProps {
 }
 
 const Avatar = ({avatarUrl}: AvatarProps) => {
-  return <UserAvatarImage resizeMode="cover" source={{uri: avatarUrl}} />;
+  return <UserAvatarImage testID="profile-image" resizeMode="cover" source={{uri: avatarUrl}} />;
 };
 
 const UserAvatarImage = styled.Image`

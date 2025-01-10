@@ -10,9 +10,9 @@ interface AvatarProps {
 
 const SearchButton = ({onPress}: AvatarProps) => {
   return (
-    <Button onPress={onPress}>
+    <Button testID="search-button" onPress={onPress}>
       <MaterialIcons name="search" size={scale(28)} color={Colors.opacityGray} />
-      <ButtonTitle>Buscar perfil no Github</ButtonTitle>
+      <ButtonTitle  testID="search-button-text">Buscar perfil no Github</ButtonTitle>
     </Button>
   );
 };

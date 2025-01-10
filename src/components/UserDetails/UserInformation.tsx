@@ -14,14 +14,14 @@ const UserInformation = ({user}: UserCardProps) => {
   return (
     <Container>
       <NameContainer>
-        <NameTitle notExist={!user.name}>
+        <NameTitle testID="user-information-name" notExist={!user.name}>
           {user.name ?? 'Nome não informado'}
         </NameTitle>
       </NameContainer>
       <InformationPanel>
         <Avatar avatarUrl={user.avatar_url} />
         <DataContainer>
-          <InformationText notExist={!user.bio}>
+          <InformationText testID="user-information-bio"  notExist={!user.bio}>
             {user.bio ?? 'Este perfil não possui uma biografia.'}
           </InformationText>
           <RowView>
@@ -30,7 +30,7 @@ const UserInformation = ({user}: UserCardProps) => {
               size={scale(22)}
               color={Colors.lightGray}
             />
-            <InformationText paddingLeft notExist={!user.bio}>
+            <InformationText testID="user-information-location" paddingLeft notExist={!user.bio}>
               {user.location ?? 'Localização não informada'}
             </InformationText>
           </RowView>
@@ -40,7 +40,7 @@ const UserInformation = ({user}: UserCardProps) => {
               size={scale(22)}
               color={Colors.lightGray}
             />
-            <InformationText paddingLeft notExist={!user.bio}>
+            <InformationText testID="user-information-mail" paddingLeft notExist={!user.bio}>
               {user.email ?? 'Email não encontrado'}
             </InformationText>
           </RowView>
@@ -50,7 +50,7 @@ const UserInformation = ({user}: UserCardProps) => {
               size={scale(22)}
               color={Colors.lightGray}
             />
-            <InformationText paddingLeft notExist={!user.bio}>
+            <InformationText testID="user-information-company" paddingLeft notExist={!user.bio}>
               {user.company ?? 'Empresa não informada'}
             </InformationText>
           </RowView>

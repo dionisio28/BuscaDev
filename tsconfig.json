@@ -1,7 +1,7 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "types": ["styled-components-react-native"],
+    "types": ["styled-components-react-native", "@types/jest", "@testing-library/react-native"],
     "baseUrl": ".",
     "paths": {
       "@env": ["src/types/env.d.ts"],
@@ -10,5 +10,5 @@
   "include": [
     "src/**/*",
     "src/types/**/*.d.ts"
-  ]
+, "__tests__/src/components/common/Message.test.tsx"  ]
 }

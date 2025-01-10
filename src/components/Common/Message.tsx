@@ -11,15 +11,19 @@ interface MessageProps {
 
 const Message: React.FC<MessageProps> = React.memo(({type, message}) => {
   return (
-    <Container type={type}>
+    <Container testID={`container-message-type-${type}`} type={type}>
       <MaterialIcons
         name={getIcon(type)}
         size={scale(32)}
         color={Colors.white}
       />
       <MessageContainer>
-        <StyledTitle>{getMessage(type)}</StyledTitle>
-        <StyledMessage te>{message}</StyledMessage>
+        <StyledTitle testID={`error-title-type-${type}`}>
+          {getMessage(type)}
+        </StyledTitle>
+        <StyledMessage testID={`error-message-type-${type}`}>
+          {message}
+        </StyledMessage>
       </MessageContainer>
     </Container>
   );

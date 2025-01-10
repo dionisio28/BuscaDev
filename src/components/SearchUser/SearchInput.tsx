@@ -30,6 +30,7 @@ const SearchInput: React.FC<SearchInputProps> = React.memo(
         </LeftIcon>
 
         <Input
+          testID="search-input"
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
@@ -39,7 +40,7 @@ const SearchInput: React.FC<SearchInputProps> = React.memo(
         />
 
         {value.length > 0 && (
-          <RightIcon onPress={handleClear}>
+          <RightIcon testID="search-input-clear-button" onPress={handleClear}>
             <MaterialIcons name="clear" size={28} color={Colors.lightBlack} />
           </RightIcon>
         )}

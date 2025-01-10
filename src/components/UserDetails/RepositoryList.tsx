@@ -50,6 +50,7 @@ const RepositoryList = ({repos}: RepositoryListProps) => {
 
   return (
     <FlatList
+      testID="repository-list"
       keyExtractor={item => String(item.id)}
       data={repos}
       scrollEnabled={false}
@@ -57,7 +58,13 @@ const RepositoryList = ({repos}: RepositoryListProps) => {
       renderItem={renderItem}
       initialNumToRender={4}
       ListFooterComponent={
-        loading ? <ActivityIndicator size="small" color={Colors.info} /> : null
+        loading ? (
+          <ActivityIndicator
+            testID="loading-indicator"
+            size="small"
+            color={Colors.info}
+          />
+        ) : null
       }
     />
   );
