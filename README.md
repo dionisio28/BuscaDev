@@ -1,6 +1,6 @@
 # **BuscaDev**
 
-## 📖 **About**
+## 📖 **Sobre**
 
 Este é um projeto **React Native** projetado para ser o **Busca Dev** pode ser utilizado para pesquisar e exibir informações sobre usuários do GitHub. Desenvolvido sobre a [API do GitHub](https://docs.github.com/en/rest), o aplicativo busca detalhes do usuário, repositórios e outros dados importantes.
 
