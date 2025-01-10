@@ -1,79 +1,144 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# **Dev Tracker**
 
-# Getting Started
+## 📖 **About**
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Este é um projeto **React Native** projetado para ser o **Busca Dev* pode ser utilizado para pesquisar e exibir informações sobre usuários do GitHub. Desenvolvido sobre a [API do GitHub](https://docs.github.com/en/rest), o aplicativo busca detalhes do usuário, repositórios e outros dados importantes.
 
-## Step 1: Start the Metro Server
+## ✨ **Features**
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- 🔍 **Buscar usuário do github pelo nome de usuário.**
+- 📄 **Ver detalhes do usuário:**
+  - Nome
+  - Localização
+  - Empresa
+  - Email
+  - Seguidores
+  - Seguindo
+  - Bio
+  - Repositórios Públicos
+- 📊 **Eplore os repositórios:**
+  - **Nome**
+  - **Estrelas**
+  - **Última alteração**
+- 🌐 **Abrir o repositório direto no GitHub.**
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 🛠️ **Feito com**
+
+Este projeto foi criado com as seguintes tecnologias:
+
+- **React Native 0.76**
+- **TypeScript**
+- **Context API**
+- **Axios**
+- **React Navigation**
+- **Styled Components**
+- **React Native Vector Icons**
+
+
+## 📱 **Imagens**
+
+| **Página de pesquisa**               | **Detalhes do usuário**               |
+|-----------------------------|-----------------------------|
+| ![pesquisa](demo/iOS_Seach.png)| ![detalhes](demo/iOS_Profile.png)| 
+
+
+## 📱 **Vídeos de demonstração**
+
+| **Pesquisar usuário**               | **Dados do usuário**          | **Scroll Infinito**       |
+|--------------------------|-------------------------------|-------------------------------|
+| ![Pesquisar usuário](demo/pesquisa_user.gif) | ![Dados do usuário](demo/user_data.gif) | ![Scroll infinito demonstração](demo/infinity_scroll.gif) |
+
+## 📱 **Tratamento de erros**
+
+| **Nomes errados**               | **Usuários sem dados**               |
+|-----------------------------|-----------------------------|
+| ![pesquisa](demo/input_test.gif)| ![detalhes](demo/no_data.png)| 
+
+
+
+
+
+## 🚀 **Começando**
+
+### **Pré-requisitos**
+
+Certifique-se de ter o seguinte instalado no seu sistema:
+
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- React Native CLI (`npm install -g react-native-cli`)
+
+### Step 1: Clone o repositório na sua máquina
+  ```bash
+   git clone https://github.com/dionisio28/BuscaDev.git
+   cd BuscaDev
+   ```
+ ### Step 2: Instalando as dependências
+  ```bash
+   yarn
+   ```
+   Para iOS tem um passo adicional
+   ```bash
+   cd ios
+   pod install
+   ```
+
+### Step 2: Inicie o METRO do React Native
+
+Comece iniciando o **Metro**, o empacotador JavaScript que vem com o React Native.
 
 ```bash
-# using npm
+# Usando npm
 npm start
 
-# OR using Yarn
+# Usando Yarn (Recomendado)
 yarn start
 ```
 
-## Step 2: Start your Application
+### Step 3: Iniciando a aplicação
+Com o Metro rodando em um terminal, abra um novo terminal e execute seu aplicativo.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+Para Android
 
 ```bash
-# using npm
+# Usando npm
 npm run android
 
-# OR using Yarn
+# Usando Yarn (Recomendado)
 yarn android
 ```
 
-### For iOS
+For iOS
 
 ```bash
-# using npm
+# Usando npm
 npm run ios
 
-# OR using Yarn
+# Usando Yarn (Recomendado)
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Step 4: Configurando seu ambiente (.env)
+Para buscar as informações completas dos usuários é necessário configurar um Token para a API do Github.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+Sem o Token você não conseguirá buscar algumas informações do usuário como por exemplo o **e-mail**.
 
-## Step 3: Modifying your App
+Você pode conseguir o seu token através deste link
 
-Now that you have successfully run the app, let's modify it.
+- [Personal access tokens (classic)](https://github.com/settings/tokens)
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Clique em generate new Token (classic)
 
-## Congratulations! :tada:
+**Imagem de ajuda**            
+ ![Create Token](demo/tutorial_token.png) Aqui marque os campos
+ **read:userRead, user:emailAccess, public_repo, read:packages, read:enterprise, read:gpg_key** ou outros dados que deseja buscar.
+  ![Create Token](demo/read_user.png) | 
 
-You've successfully run and modified your React Native App. :partying_face:
+Após isso é necessário criar um arquivo **.env** em seu código e definir a variável de ambiente ``GITHUB_TOKEN``.
 
-### Now what?
+  ```bash
+  GITHUB_TOKEN=<SEU_TOKEN>
+   ```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Pronto após essas configurações o projeto ira funcionar normalmente!
