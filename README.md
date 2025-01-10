@@ -33,6 +33,9 @@ Este projeto foi criado com as seguintes tecnologias:
 - **React Navigation**
 - **Styled Components**
 - **React Native Vector Icons**
+- **React Native Testing Library**
+
+O projeto possui testes nos componentes principais e também nas páginas do APP.
 
 
 ## 📱 **Imagens**
