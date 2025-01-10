@@ -1,5 +1,5 @@
 import githubApi from '../githubApi';
-import {GitHubResponse, GitHubUser} from '../../types/GitHubUser';
+import {GitHubResponse, GitHubUser} from '../../types/GitHubUserTypes';
 
 export const fetchUser = async (username: string): Promise<GitHubResponse> => {
   try {

@@ -2,7 +2,7 @@ import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components/native';
 import {scale} from '../../utils/platformUtils';
-import {GitHubUser} from '../../types/GitHubUser';
+import {GitHubUser} from '../../types/GitHubUserTypes';
 import {Colors} from '../../styles/colors';
 import Avatar from './Avatar';
 
@@ -11,7 +11,6 @@ interface UserCardProps {
 }
 
 const UserInformation = ({user}: UserCardProps) => {
-  console.log(user);
   return (
     <Container>
       <NameContainer>
@@ -19,7 +18,6 @@ const UserInformation = ({user}: UserCardProps) => {
           {user.name ?? 'Nome não informado'}
         </NameTitle>
       </NameContainer>
-
       <InformationPanel>
         <Avatar avatarUrl={user.avatar_url} />
         <DataContainer>
@@ -32,21 +30,28 @@ const UserInformation = ({user}: UserCardProps) => {
               size={scale(22)}
               color={Colors.lightGray}
             />
-
             <InformationText paddingLeft notExist={!user.bio}>
               {user.location ?? 'Localização não informada'}
             </InformationText>
           </RowView>
-
           <RowView>
             <MaterialIcons
               name="mail"
               size={scale(22)}
               color={Colors.lightGray}
             />
-
             <InformationText paddingLeft notExist={!user.bio}>
               {user.email ?? 'Email não encontrado'}
+            </InformationText>
+          </RowView>
+          <RowView>
+            <MaterialIcons
+              name="business"
+              size={scale(22)}
+              color={Colors.lightGray}
+            />
+            <InformationText paddingLeft notExist={!user.bio}>
+              {user.company ?? 'Empresa não informada'}
             </InformationText>
           </RowView>
         </DataContainer>

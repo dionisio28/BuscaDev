@@ -28,6 +28,7 @@ const UserDetails = () => {
           <InformationItem title={'Seguindo'} value={user.following} />
         </InformatiosRow>
         <Divider />
+        <TextRepos>Últimos respositórios</TextRepos>
       </Container>
     </Scroll>
   );
@@ -52,6 +53,13 @@ const InformatiosRow = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+`;
+
+const TextRepos = styled.Text`
+  font-size: ${scale(18)}px;
+  line-height: ${scale(20)};
+  padding: ${scale(4)}px;
+  color: ${Colors.lightBlack};
 `;
 
 export default UserDetails;
